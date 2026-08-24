@@ -1,0 +1,95 @@
+generator client {
+  provider = "prisma-client-js"
+}
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum RaceGoalStatus {
+  ACTIVE
+  COMPLETED
+  ARCHIVED
+}
+
+enum WorkoutType {
+  REST
+  EASY
+  LONG
+  TEMPO
+  INTERVAL
+  RACE_PACE
+}
+
+model User {
+  id           String     @id @default(uuid())
+  email        String     @unique
+  passwordHash String
+  name         String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  raceGoals    RaceGoal[]
+  runLogs      RunLog[]
+}
+
+model RaceGoal {
+  id                      String         @id @default(uuid())
+  userId                  String
+  raceDate                DateTime       @db.Date
+  targetFinishTimeSec     Int?
+  baselineWeeklyMileageKm Float
+  baselineLongestRunKm    Float
+  daysPerWeek             Int
+  status                  RaceGoalStatus @default(ACTIVE)
+  createdAt               DateTime       @default(now())
+  user                    User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  trainingPlan            TrainingPlan?
+  runLogs                 RunLog[]
+
+  @@index([userId, status])
+}
+
+model TrainingPlan {
+  id           String           @id @default(uuid())
+  raceGoalId   String           @unique
+  startDate    DateTime         @db.Date
+  endDate      DateTime         @db.Date
+  planMetadata Json
+  generatedAt  DateTime         @default(now())
+  raceGoal     RaceGoal         @relation(fields: [raceGoalId], references: [id], onDelete: Cascade)
+  workouts     PlannedWorkout[]
+}
+
+model PlannedWorkout {
+  id                 String       @id @default(uuid())
+  trainingPlanId     String
+  scheduledDate      DateTime     @db.Date
+  weekNumber         Int
+  workoutType        WorkoutType
+  plannedDistanceKm  Float
+  plannedDurationMin Int?
+  title              String
+  description        String?
+  trainingPlan       TrainingPlan @relation(fields: [trainingPlanId], references: [id], onDelete: Cascade)
+  runLogs            RunLog[]
+
+  @@index([trainingPlanId, scheduledDate])
+}
+
+model RunLog {
+  id               String          @id @default(uuid())
+  userId           String
+  raceGoalId       String
+  plannedWorkoutId String?
+  completedAt      DateTime        @db.Date
+  distanceKm       Float
+  durationMin      Int
+  rpe              Int?
+  notes            String?
+  createdAt        DateTime        @default(now())
+  user             User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  raceGoal         RaceGoal        @relation(fields: [raceGoalId], references: [id], onDelete: Cascade)
+  plannedWorkout   PlannedWorkout? @relation(fields: [plannedWorkoutId], references: [id], onDelete: SetNull)
+
+  @@index([userId, completedAt])
+}
