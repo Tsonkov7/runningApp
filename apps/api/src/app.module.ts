@@ -4,6 +4,7 @@ import { HealthModule } from './health/health.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
 import { RaceGoalsModule } from './race-goals/race-goals.module';
+import { TrainingPlansModule } from './training-plans/training-plans.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -11,6 +12,7 @@ import { RaceGoalsModule } from './race-goals/race-goals.module';
     HealthModule,
     AuthModule,
     RaceGoalsModule,
+    TrainingPlansModule,
   ],
 })
 export class AppModule {}
