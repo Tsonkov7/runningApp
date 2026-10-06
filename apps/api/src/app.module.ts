@@ -7,6 +7,7 @@ import { RaceGoalsModule } from './race-goals/race-goals.module';
 import { TrainingPlansModule } from './training-plans/training-plans.module';
 import { WorkoutsModule } from './workouts/workouts.module';
 import { RunLogsModule } from './run-logs/run-logs.module';
+import { ProgressModule } from './progress/progress.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -17,6 +18,7 @@ import { RunLogsModule } from './run-logs/run-logs.module';
     TrainingPlansModule,
     WorkoutsModule,
     RunLogsModule,
+    ProgressModule,
   ],
 })
 export class AppModule {}
