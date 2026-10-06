@@ -12,6 +12,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
 import { CreateRunLogDto } from './dto/create-run.dto';
 import { RunLogsService } from './run-logs.service';
+import { ApiTags } from '@nestjs/swagger';
 
 type AuthUser = {
   id: string;
@@ -19,6 +20,7 @@ type AuthUser = {
   name: string;
 };
 
+@ApiTags('Run Logs')
 @Controller('run-logs')
 @UseGuards(AuthGuard('jwt'))
 export class RunLogsController {

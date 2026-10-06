@@ -3,6 +3,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
 import { ListWorkoutsQueryDto } from './dto/list-workouts-query.dto';
 import { WorkoutsService } from './workouts.service';
+import { ApiTags } from '@nestjs/swagger';
 
 type AuthUser = {
   id: string;
@@ -10,6 +11,7 @@ type AuthUser = {
   name: string;
 };
 
+@ApiTags('Workouts')
 @Controller('workouts')
 @UseGuards(AuthGuard('jwt'))
 export class WorkoutsController {

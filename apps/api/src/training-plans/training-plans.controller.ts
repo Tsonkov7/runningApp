@@ -2,6 +2,7 @@ import { Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
 import { TrainingPlansService } from './training-plans.service';
+import { ApiTags } from '@nestjs/swagger';
 
 type AuthUser = {
   id: string;
@@ -9,6 +10,7 @@ type AuthUser = {
   name: string;
 };
 
+@ApiTags('Training Plans')
 @Controller()
 @UseGuards(AuthGuard('jwt'))
 export class TrainingPlansController {

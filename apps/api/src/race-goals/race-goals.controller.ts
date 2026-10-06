@@ -3,6 +3,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
 import { CreateRaceGoalDto } from './dto/create-race-goal.dto';
 import { RaceGoalsService } from './race-goals.service';
+import { ApiTags } from '@nestjs/swagger';
 
 type AuthUser = {
   id: string;
@@ -10,6 +11,7 @@ type AuthUser = {
   name: string;
 };
 
+@ApiTags('Race Goals')
 @Controller('race-goals')
 @UseGuards(AuthGuard('jwt'))
 export class RaceGoalsController {

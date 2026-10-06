@@ -2,6 +2,7 @@ import { Controller, Get, Query, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
 import { ProgressService } from './progress.service';
+import { ApiTags } from '@nestjs/swagger';
 
 type AuthUser = {
   id: string;
@@ -9,6 +10,7 @@ type AuthUser = {
   name: string;
 };
 
+@ApiTags('Progress')
 @Controller('progress')
 @UseGuards(AuthGuard('jwt'))
 export class ProgressController {
