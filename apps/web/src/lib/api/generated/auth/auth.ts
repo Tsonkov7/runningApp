@@ -6,6 +6,7 @@
  * OpenAPI spec version: 1.0
  */
 import type {
+  AuthResponseDto,
   LoginDto,
   RegisterDto
 } from '../models';
@@ -13,7 +14,7 @@ import type {
 import { customFetch } from '../../mutator';
 
 export type authControllerRegisterResponse201 = {
-  data: void
+  data: AuthResponseDto
   status: 201
 }
 
@@ -62,7 +63,7 @@ return customFetch<authControllerRegisterResponse>(getAuthControllerRegisterUrl(
 
 
 export type authControllerLoginResponse201 = {
-  data: void
+  data: AuthResponseDto
   status: 201
 }
 
@@ -81,6 +82,9 @@ export const getAuthControllerLoginUrl = () => {
   return `/api/v1/auth/login`
 }
 
+/**
+ * @summary Login a user
+ */
 export const authControllerLogin = async (loginDto: LoginDto, options?: Parameters<typeof customFetch>[1]): Promise<authControllerLoginResponse> => {
 
     const getHeaders = (h?: NonNullable<RequestInit['headers']>): Record<string, string | readonly string[]> => {

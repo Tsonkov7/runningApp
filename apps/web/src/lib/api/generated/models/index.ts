@@ -6,6 +6,8 @@
  * OpenAPI spec version: 1.0
  */
 
+export * from './authResponseDto';
+export * from './authUserDto';
 export * from './createRaceGoalDto';
 export * from './createRunLogDto';
 export * from './loginDto';
