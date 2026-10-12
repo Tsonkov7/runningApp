@@ -8,6 +8,7 @@
 import type {
   AuthResponseDto,
   LoginDto,
+  MeResponseDto,
   RegisterDto
 } from '../models';
 
@@ -112,7 +113,7 @@ return customFetch<authControllerLoginResponse>(getAuthControllerLoginUrl(),
 
 
 export type authControllerMeResponse200 = {
-  data: void
+  data: MeResponseDto
   status: 200
 }
 
@@ -131,6 +132,9 @@ export const getAuthControllerMeUrl = () => {
   return `/api/v1/auth/me`
 }
 
+/**
+ * @summary Get the current user
+ */
 export const authControllerMe = async ( options?: Parameters<typeof customFetch>[1]): Promise<authControllerMeResponse> => {
 
   return customFetch<authControllerMeResponse>(getAuthControllerMeUrl(),

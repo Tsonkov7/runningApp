@@ -11,6 +11,7 @@ export * from './authUserDto';
 export * from './createRaceGoalDto';
 export * from './createRunLogDto';
 export * from './loginDto';
+export * from './meResponseDto';
 export * from './progressControllerGetWeeklyParams';
 export * from './registerDto';
 export * from './workoutsControllerFindByDateRangeParams';

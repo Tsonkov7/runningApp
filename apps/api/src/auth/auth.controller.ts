@@ -9,8 +9,10 @@ import {
   ApiBearerAuth,
   ApiOperation,
   ApiCreatedResponse,
+  ApiOkResponse,
 } from '@nestjs/swagger';
 import { AuthResponseDto } from './dto/AuthResponse.dto';
+import { MeResponseDto } from './dto/MeResponse.dto';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -31,10 +33,12 @@ export class AuthController {
     return this.authService.login(dto);
   }
 
+  @ApiOperation({ summary: 'Get the current user' })
+  @ApiOkResponse({ type: MeResponseDto })
   @ApiBearerAuth()
   @UseGuards(AuthGuard('jwt'))
   @Get('me')
-  me(@CurrentUser() user: unknown) {
+  me(@CurrentUser() user: MeResponseDto) {
     return user;
   }
 }
