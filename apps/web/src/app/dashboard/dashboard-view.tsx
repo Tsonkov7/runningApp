@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { authControllerMe } from "@/lib/api/generated/auth/auth";
 import { clearAccessToken, getAccessToken } from "@/lib/auth/token";
+import Link from "next/link";
 
 export function DashboardView() {
   const router = useRouter();
@@ -33,6 +34,9 @@ export function DashboardView() {
       <p className="mt-2 text-sm text-gray-600">
         Auth works. Next we&apos;ll build onboarding and the plan UI.
       </p>
+      <Link href="/onboarding" className="text-blue-500">
+        Onboarding
+      </Link>
     </>
   );
 }

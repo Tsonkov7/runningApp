@@ -13,5 +13,8 @@ export * from './createRunLogDto';
 export * from './loginDto';
 export * from './meResponseDto';
 export * from './progressControllerGetWeeklyParams';
+export * from './raceGoalResponseDto';
+export * from './raceGoalResponseDtoStatus';
+export * from './raceGoalResponseDtoTargetFinishTimeSec';
 export * from './registerDto';
 export * from './workoutsControllerFindByDateRangeParams';

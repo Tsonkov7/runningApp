@@ -6,13 +6,14 @@
  * OpenAPI spec version: 1.0
  */
 import type {
-  CreateRaceGoalDto
+  CreateRaceGoalDto,
+  RaceGoalResponseDto
 } from '../models';
 
 import { customFetch } from '../../mutator';
 
 export type raceGoalsControllerCreateResponse201 = {
-  data: void
+  data: RaceGoalResponseDto
   status: 201
 }
 
@@ -61,7 +62,7 @@ return customFetch<raceGoalsControllerCreateResponse>(getRaceGoalsControllerCrea
 
 
 export type raceGoalsControllerFindActiveResponse200 = {
-  data: void
+  data: RaceGoalResponseDto
   status: 200
 }
 
@@ -96,7 +97,7 @@ export const raceGoalsControllerFindActive = async ( options?: Parameters<typeof
 
 
 export type raceGoalsControllerFindOneResponse200 = {
-  data: void
+  data: RaceGoalResponseDto
   status: 200
 }
 
