@@ -34,8 +34,11 @@ export function DashboardView() {
       <p className="mt-2 text-sm text-gray-600">
         Auth works. Next we&apos;ll build onboarding and the plan UI.
       </p>
-      <Link href="/onboarding" className="text-blue-500">
+      <Link href="/onboarding" className="text-blue-500 block">
         Onboarding
+      </Link>
+      <Link href="/plan" className="text-blue-500 block">
+        Plan
       </Link>
     </>
   );

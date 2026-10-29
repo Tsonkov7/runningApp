@@ -5,10 +5,14 @@
  * Marathon training plan, workouts, run logs, and progress
  * OpenAPI spec version: 1.0
  */
+import type {
+  TrainingPlanResponseDto
+} from '../models';
+
 import { customFetch } from '../../mutator';
 
 export type trainingPlansControllerGenerateResponse201 = {
-  data: void
+  data: TrainingPlanResponseDto
   status: 201
 }
 
@@ -43,7 +47,7 @@ export const trainingPlansControllerGenerate = async (raceGoalId: string, option
 
 
 export type trainingPlansControllerFindOneResponse200 = {
-  data: void
+  data: TrainingPlanResponseDto
   status: 200
 }
 
@@ -78,7 +82,7 @@ export const trainingPlansControllerFindOne = async (id: string, options?: Param
 
 
 export type trainingPlansControllerFindByRaceGoalResponse200 = {
-  data: void
+  data: TrainingPlanResponseDto
   status: 200
 }
 
