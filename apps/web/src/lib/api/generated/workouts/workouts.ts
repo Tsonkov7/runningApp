@@ -6,13 +6,14 @@
  * OpenAPI spec version: 1.0
  */
 import type {
+  PlannedWorkoutResponseDto,
   WorkoutsControllerFindByDateRangeParams
 } from '../models';
 
 import { customFetch } from '../../mutator';
 
 export type workoutsControllerFindByDateRangeResponse200 = {
-  data: void
+  data: PlannedWorkoutResponseDto[]
   status: 200
 }
 
@@ -54,7 +55,7 @@ export const workoutsControllerFindByDateRange = async (params: WorkoutsControll
 
 
 export type workoutsControllerFindOneResponse200 = {
-  data: void
+  data: PlannedWorkoutResponseDto
   status: 200
 }
 

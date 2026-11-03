@@ -3,7 +3,13 @@ import { AuthGuard } from '@nestjs/passport';
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
 import { ListWorkoutsQueryDto } from './dto/list-workouts-query.dto';
 import { WorkoutsService } from './workouts.service';
-import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiBearerAuth,
+  ApiOkResponse,
+} from '@nestjs/swagger';
+import { PlannedWorkoutResponseDto } from '../training-plans/dto/planned-workout-response.dto';
 
 type AuthUser = {
   id: string;
@@ -20,6 +26,7 @@ export class WorkoutsController {
 
   @ApiOperation({ summary: 'Find workouts by date range' })
   @Get()
+  @ApiOkResponse({ type: PlannedWorkoutResponseDto, isArray: true })
   findByDateRange(
     @CurrentUser() user: AuthUser,
     @Query() query: ListWorkoutsQueryDto,
@@ -28,6 +35,7 @@ export class WorkoutsController {
   }
 
   @ApiOperation({ summary: 'Find a workout by id' })
+  @ApiOkResponse({ type: PlannedWorkoutResponseDto })
   @Get(':id')
   findOne(@CurrentUser() user: AuthUser, @Param('id') id: string) {
     return this.workoutsService.findOne(user.id, id);
