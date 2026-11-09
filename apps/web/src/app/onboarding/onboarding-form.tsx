@@ -38,7 +38,6 @@ export function OnboardingForm() {
 
     try {
       await raceGoalsControllerCreate(body);
-      // Next step (F4) will generate the plan; for now go to dashboard
       router.push("/dashboard");
     } catch (err) {
       setError(

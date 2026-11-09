@@ -43,6 +43,6 @@ export class CreateRunLogDto {
 
   @IsOptional()
   @IsString()
-  @ApiProperty({ description: 'The notes of the run' })
+  @ApiPropertyOptional({ description: 'The notes of the run' })
   notes?: string;
 }

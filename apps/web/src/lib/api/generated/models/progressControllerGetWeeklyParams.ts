@@ -7,5 +7,5 @@
  */
 
 export type ProgressControllerGetWeeklyParams = {
-weeks: string;
+weeks?: number;
 };

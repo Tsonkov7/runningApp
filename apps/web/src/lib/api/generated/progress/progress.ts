@@ -6,13 +6,15 @@
  * OpenAPI spec version: 1.0
  */
 import type {
-  ProgressControllerGetWeeklyParams
+  ProgressControllerGetWeeklyParams,
+  ProgressSummaryResponseDto,
+  WeeklyProgressItemDto
 } from '../models';
 
 import { customFetch } from '../../mutator';
 
 export type progressControllerGetSummaryResponse200 = {
-  data: void
+  data: ProgressSummaryResponseDto
   status: 200
 }
 
@@ -47,7 +49,7 @@ export const progressControllerGetSummary = async ( options?: Parameters<typeof 
 
 
 export type progressControllerGetWeeklyResponse200 = {
-  data: void
+  data: WeeklyProgressItemDto[]
   status: 200
 }
 
@@ -58,7 +60,7 @@ export type progressControllerGetWeeklyResponseSuccess = (progressControllerGetW
 
 export type progressControllerGetWeeklyResponse = (progressControllerGetWeeklyResponseSuccess)
 
-export const getProgressControllerGetWeeklyUrl = (params: ProgressControllerGetWeeklyParams,) => {
+export const getProgressControllerGetWeeklyUrl = (params?: ProgressControllerGetWeeklyParams,) => {
   const normalizedParams = new URLSearchParams();
 
   Object.entries(params || {}).forEach(([key, value]) => {
@@ -76,7 +78,7 @@ export const getProgressControllerGetWeeklyUrl = (params: ProgressControllerGetW
 /**
  * @summary Get the weekly progress
  */
-export const progressControllerGetWeekly = async (params: ProgressControllerGetWeeklyParams, options?: Parameters<typeof customFetch>[1]): Promise<progressControllerGetWeeklyResponse> => {
+export const progressControllerGetWeekly = async (params?: ProgressControllerGetWeeklyParams, options?: Parameters<typeof customFetch>[1]): Promise<progressControllerGetWeeklyResponse> => {
 
   return customFetch<progressControllerGetWeeklyResponse>(getProgressControllerGetWeeklyUrl(params),
   {

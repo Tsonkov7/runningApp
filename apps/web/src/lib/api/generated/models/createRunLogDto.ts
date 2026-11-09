@@ -20,5 +20,5 @@ export interface CreateRunLogDto {
   /** The rpe of the run */
   rpe?: number;
   /** The notes of the run */
-  notes: string;
+  notes?: string;
 }

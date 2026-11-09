@@ -16,14 +16,17 @@ export function DashboardView() {
       return;
     }
 
-    authControllerMe()
-      .then((res) => {
+    async function loadUser() {
+      try {
+        const res = await authControllerMe();
         setName(res.data?.name ?? "Runner");
-      })
-      .catch(() => {
+      } catch {
         clearAccessToken();
         router.replace("/login");
-      });
+      }
+    }
+
+    void loadUser();
   }, [router]);
 
   return (
@@ -39,6 +42,12 @@ export function DashboardView() {
       </Link>
       <Link href="/plan" className="text-blue-500 block">
         Plan
+      </Link>
+      <Link href="/runs" className="text-blue-500 block">
+        Runs
+      </Link>
+      <Link href="/calendar" className="text-blue-500 block">
+        Calendar
       </Link>
     </>
   );

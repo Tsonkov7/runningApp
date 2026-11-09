@@ -6,13 +6,15 @@
  * OpenAPI spec version: 1.0
  */
 import type {
-  CreateRunLogDto
+  CreateRunLogDto,
+  RunLogResponseDto,
+  UpdateRunLogDto
 } from '../models';
 
 import { customFetch } from '../../mutator';
 
 export type runLogsControllerCreateResponse201 = {
-  data: void
+  data: RunLogResponseDto
   status: 201
 }
 
@@ -61,7 +63,7 @@ return customFetch<runLogsControllerCreateResponse>(getRunLogsControllerCreateUr
 
 
 export type runLogsControllerFindAllResponse200 = {
-  data: void
+  data: RunLogResponseDto[]
   status: 200
 }
 
@@ -96,7 +98,7 @@ export const runLogsControllerFindAll = async ( options?: Parameters<typeof cust
 
 
 export type runLogsControllerFindOneResponse200 = {
-  data: void
+  data: RunLogResponseDto
   status: 200
 }
 
@@ -131,7 +133,7 @@ export const runLogsControllerFindOne = async (id: string, options?: Parameters<
 
 
 export type runLogsControllerUpdateResponse200 = {
-  data: void
+  data: RunLogResponseDto
   status: 200
 }
 
@@ -153,20 +155,35 @@ export const getRunLogsControllerUpdateUrl = (id: string,) => {
 /**
  * @summary Update a run log by id
  */
-export const runLogsControllerUpdate = async (id: string, options?: Parameters<typeof customFetch>[1]): Promise<runLogsControllerUpdateResponse> => {
+export const runLogsControllerUpdate = async (id: string,
+    updateRunLogDto: UpdateRunLogDto, options?: Parameters<typeof customFetch>[1]): Promise<runLogsControllerUpdateResponse> => {
 
-  return customFetch<runLogsControllerUpdateResponse>(getRunLogsControllerUpdateUrl(id),
+    const getHeaders = (h?: NonNullable<RequestInit['headers']>): Record<string, string | readonly string[]> => {
+    if (!h) return {};
+    if (h instanceof Headers) return Object.fromEntries(h.entries());
+    if (Symbol.iterator in h) {
+      return Object.fromEntries(
+        Array.from(h as Iterable<Iterable<string>>, (entry) => Array.from(entry) as [string, string]),
+      );
+    }
+    const headers: Record<string, string | readonly string[]> = {};
+    for (const [name, value] of Object.entries<string | readonly string[] | undefined>(h)) {
+      if (value !== undefined) headers[name] = value;
+    }
+    return headers;
+  };
+return customFetch<runLogsControllerUpdateResponse>(getRunLogsControllerUpdateUrl(id),
   {
     ...options,
-    method: 'PATCH'
-
-
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json', ...getHeaders(options?.headers) },
+    body: JSON.stringify(updateRunLogDto)
   }
 );}
 
 
 export type runLogsControllerRemoveResponse200 = {
-  data: void
+  data: RunLogResponseDto
   status: 200
 }
 
