@@ -6,7 +6,7 @@ todos:
     content: "Scaffold monorepo: git, pnpm workspace, Next.js web, NestJS api, Docker PostgreSQL (no Prisma/auth yet)"
     status: pending
   - id: phase-0b-prisma
-    content: "Add Prisma schema, first migration, and NestJS PrismaModule + health check"
+    content: Add Prisma schema, first migration, and NestJS PrismaModule + health check
     status: pending
   - id: phase-1-auth
     content: Implement JWT auth (register/login), UsersModule, and protected frontend routes
@@ -28,7 +28,7 @@ todos:
     status: pending
   - id: phase-7-polish
     content: Responsive polish, E2E smoke test, README and deployment docs
-    status: pending
+    status: completed
 isProject: false
 ---
 
@@ -80,15 +80,15 @@ flowchart LR
 
 ### In scope (MVP v1)
 
-| Area                | What ships                                                                                                                                                     |
-| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Auth**            | Email/password register, login, logout; JWT stored in httpOnly cookie or secure client pattern; protected routes                                               |
-| **Onboarding**      | Single wizard: marathon race date, optional target finish time, current weekly mileage, longest recent run, days per week (3 / 4 / 5)                          |
-| **Plan generation** | Rule-based engine (templates + periodization), one active plan per race goal; regenerate only if goal inputs change                                            |
-| **Plan views**      | Full plan list by week; weekly calendar grid; workout detail (type, distance, notes)                                                                           |
-| **Run logging**     | Log a run against a planned workout or as a standalone entry: date, distance, duration, optional notes and RPE (1–10)                                          |
-| **Progress**        | Dashboard: current week planned vs completed mileage; simple chart or bar summary of weekly totals; countdown to race                                          |
-| **Profile**         | View/update baseline stats (weekly mileage, longest run, days/week) for the active goal                                                                        |
+| Area                | What ships                                                                                                                            |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| **Auth**            | Email/password register, login, logout; JWT stored in httpOnly cookie or secure client pattern; protected routes                      |
+| **Onboarding**      | Single wizard: marathon race date, optional target finish time, current weekly mileage, longest recent run, days per week (3 / 4 / 5) |
+| **Plan generation** | Rule-based engine (templates + periodization), one active plan per race goal; regenerate only if goal inputs change                   |
+| **Plan views**      | Full plan list by week; weekly calendar grid; workout detail (type, distance, notes)                                                  |
+| **Run logging**     | Log a run against a planned workout or as a standalone entry: date, distance, duration, optional notes and RPE (1–10)                 |
+| **Progress**        | Dashboard: current week planned vs completed mileage; simple chart or bar summary of weekly totals; countdown to race                 |
+| **Profile**         | View/update baseline stats (weekly mileage, longest run, days/week) for the active goal                                               |
 
 ### Explicitly out of scope (post-MVP)
 
