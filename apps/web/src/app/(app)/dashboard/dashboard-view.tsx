@@ -56,24 +56,6 @@ export function DashboardView() {
           </p>
         )}
       </div>
-
-      <nav className="flex flex-col gap-2 text-sm">
-        <Link href="/onboarding" className="underline">
-          Onboarding
-        </Link>
-        <Link href="/plan" className="underline">
-          Plan
-        </Link>
-        <Link href="/calendar" className="underline">
-          Calendar
-        </Link>
-        <Link href="/runs" className="underline">
-          Runs
-        </Link>
-        <Link href="/progress" className="underline">
-          Progress
-        </Link>
-      </nav>
     </div>
   );
 }

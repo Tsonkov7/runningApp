@@ -6,9 +6,9 @@ export default async function WorkoutPage({ params }: Props) {
   const { id } = await params;
 
   return (
-    <main className="mx-auto max-w-2xl p-6">
+    <>
       <h1 className="mb-6 text-2xl font-semibold">Workout</h1>
       <WorkoutDetailView id={id} />
-    </main>
+    </>
   );
 }
